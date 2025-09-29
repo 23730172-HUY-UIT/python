@@ -1,0 +1,82 @@
+{
+    "currentUser": {
+        "name": "Mathias W.",
+        "email": "mathew.west@ienetworksolutions.com",
+        "password": "password123",
+        "role": "supervisor"
+    },
+    "brands": [
+        { "id": 1, "name": "Generic Inc." },
+        { "id": 2, "name": "TechCorp" },
+        { "id": 3, "name": "Innovate LLC" }
+    ],
+    "categories": [
+        { "id": 1, "name": "Gas Kitting" },
+        { "id": 2, "name": "Condet" },
+        { "id": 3, "name": "Fittings" }
+    ],
+    "items": [
+    { "product_id": 1, "product_name": "Gas Kitting Kit 1", "brand_id": 1, "categories_id": 1, "quantity": 1, "rate": 62.13, "active": 0, "status": 1, "minStock": 5, "unit": "pcs", "store": "22 House Store" },
+    { "product_id": 2, "product_name": "Condet Kit 2", "brand_id": 2, "categories_id": 2, "quantity": 2, "rate": 34.5, "active": 1, "status": 1, "minStock": 5, "unit": "pcs", "store": "HD Main Store" },
+    { "product_id": 3, "product_name": "Fittings Kit 3", "brand_id": 3, "categories_id": 3, "quantity": 3, "rate": 89.01, "active": 1, "status": 1, "minStock": 5, "unit": "pcs", "store": "HD Main Store" },
+    { "product_id": 4, "product_name": "Gas Kitting Kit 4", "brand_id": 1, "categories_id": 1, "quantity": 4, "rate": 12.75, "active": 1, "status": 1, "minStock": 5, "unit": "pcs", "store": "22 House Store" },
+    { "product_id": 5, "product_name": "Condet Kit 5", "brand_id": 2, "categories_id": 2, "quantity": 5, "rate": 55.0, "active": 0, "status": 1, "minStock": 5, "unit": "pcs", "store": "HD Main Store" },
+    { "product_id": 6, "product_name": "Fittings Kit 6", "brand_id": 3, "categories_id": 3, "quantity": 1, "rate": 4.99, "active": 1, "status": 1, "minStock": 5, "unit": "pcs", "store": "HD Main Store" },
+    { "product_id": 7, "product_name": "Gas Kitting Kit 7", "brand_id": 1, "categories_id": 1, "quantity": 2, "rate": 78.2, "active": 1, "status": 1, "minStock": 5, "unit": "pcs", "store": "22 House Store" }
+    ],
+    "onHandItems": [
+        { "id": 1, "name": "Gas Kitting", "image": "https://i.pravatar.cc/40?u=item1", "model": "G-7893", "location": "22 House Store", "quantity": 88, "minBalance": 20, "expiryDate": "2024-07-28" },
+        { "id": 2, "name": "Condet", "image": "https://i.pravatar.cc/40?u=item2", "model": "Co-7898", "location": "HD Main Store", "quantity": 15, "minBalance": 20, "expiryDate": "2024-08-02" },
+        { "id": 3, "name": "Condet", "image": "https://i.pravatar.cc/40?u=item3", "model": "G-7893", "location": "Tafo House Store", "quantity": 5, "minBalance": 20, "expiryDate": "2024-08-07" },
+        { "id": 4, "name": "Condet", "image": "https://i.pravatar.cc/40?u=item4", "model": "Co-7898", "location": "22 House Store", "quantity": 72, "minBalance": 20, "expiryDate": "2024-08-12" },
+        { "id": 5, "name": "Gas Kitting", "image": "https://i.pravatar.cc/40?u=item5", "model": "G-7893", "location": "HD Main Store", "quantity": 91, "minBalance": 20, "expiryDate": "2024-08-17" }
+    ],
+    "transactions": [
+        { "id": "TRN-9001", "date": "2024-08-27", "itemId": "ITM-102", "itemName": "Condet Kit 102", "type": "Import", "quantity": 23, "from": "Supplier", "to": "HD Main Store", "orderNumber": "PO-5001", "user": "Mathias W." },
+        { "id": "TRN-9002", "date": "2024-08-26", "itemId": "ITM-103", "itemName": "Condet Kit 103", "type": "Export", "quantity": 4, "from": "22 House Store", "to": "Customer", "orderNumber": "ORD-1002", "user": "John Doe" },
+        { "id": "TRN-9003", "date": "2024-08-26", "itemId": "ITM-104", "itemName": "Condet Kit 104", "type": "Move", "quantity": 33, "from": "Tafo House Store", "to": "HD Main Store", "orderNumber": null, "user": "Jane Smith" },
+        { "id": "TRN-9004", "date": "2024-08-25", "itemId": "ITM-105", "itemName": "Condet Kit 105", "type": "Import", "quantity": 19, "from": "Supplier", "to": "HD Main Store", "orderNumber": "PO-5004", "user": "Mathias W." }
+    ],
+    "users": [
+        { "id": 1, "name": "John Doe", "email": "john.doe@example.com", "role": "Manager", "status": "Active", "avatar": "https://i.pravatar.cc/40?u=john" },
+        { "id": 2, "name": "Jane Smith", "email": "jane.smith@example.com", "role": "Technician", "status": "Active", "avatar": "https://i.pravatar.cc/40?u=jane" },
+        { "id": 3, "name": "Mike Johnson", "email": "mike.j@example.com", "role": "Technician", "status": "Inactive", "avatar": "https://i.pravatar.cc/40?u=mike" }
+    ],
+    "tasks": [
+        { "id": 1, "description": "Quarterly stock count", "assignedTo": "Unassigned", "priority": "High" },
+        { "id": 2, "description": "Audit warehouse A1", "assignedTo": "Jane Smith", "priority": "Medium" },
+        { "id": 3, "description": "Restock safety equipment", "assignedTo": "Unassigned", "priority": "High" }
+    ],
+    "issues": [
+        { "id": 1, "item": "G-7893", "reportedBy": "John Doe", "issue": "Faulty sensor", "status": "Pending" },
+        { "id": 2, "item": "Co-7898", "reportedBy": "Mike Johnson", "issue": "Missing component", "status": "Pending" },
+        { "id": 3, "item": "G-7893", "reportedBy": "Jane Smith", "issue": "Incorrect calibration", "status": "Closed" }
+    ],
+    "orders": [
+        { "id": "ORD-1001", "customer": "John Doe", "date": "2024-08-27", "total": "985.42", "status": "Pending", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 885.42 }] },
+        { "id": "ORD-1002", "customer": "Jane Smith", "date": "2024-08-26", "total": "123.05", "status": "Shipped", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 23.05 }] },
+        { "id": "ORD-1003", "customer": "ACME Corp", "date": "2024-08-25", "total": "543.10", "status": "Pending", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 443.10 }] },
+        { "id": "ORD-1004", "customer": "Tech Solutions", "date": "2024-08-24", "total": "876.50", "status": "Canceled", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 776.50 }] },
+        { "id": "ORD-1005", "customer": "John Doe", "date": "2024-08-23", "total": "234.99", "status": "Pending", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 134.99 }] },
+        { "id": "ORD-1006", "customer": "Jane Smith", "date": "2024-08-22", "total": "654.80", "status": "Shipped", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 554.80 }] },
+        { "id": "ORD-1007", "customer": "ACME Corp", "date": "2024-08-21", "total": "1199.00", "status": "Pending", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 1099 }] },
+        { "id": "ORD-1008", "customer": "Tech Solutions", "date": "2024-08-20", "total": "450.00", "status": "Delivered", "tag": "urgent", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 350 }] },
+        { "id": "ORD-1009", "customer": "John Doe", "date": "2024-08-19", "total": "781.25", "status": "Pending", "tag": "at-risk", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 681.25 }] },
+        { "id": "ORD-1010", "customer": "Jane Smith", "date": "2024-08-18", "total": "321.60", "status": "Shipped", "tag": "at-risk", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 221.60 }] },
+        { "id": "ORD-1011", "customer": "ACME Corp", "date": "2024-08-17", "total": "888.88", "status": "Pending", "tag": "at-risk", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 788.88 }] },
+        { "id": "ORD-1012", "customer": "Tech Solutions", "date": "2024-08-16", "total": "150.00", "status": "Canceled", "tag": "at-risk", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 50 }] },
+        { "id": "ORD-1013", "customer": "John Doe", "date": "2024-08-15", "total": "400.00", "status": "Pending", "tag": "at-risk", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 300 }] },
+        { "id": "ORD-1014", "customer": "Jane Smith", "date": "2024-08-14", "total": "555.55", "status": "Shipped", "tag": "at-risk", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 455.55 }] },
+        { "id": "ORD-1015", "customer": "ACME Corp", "date": "2024-08-13", "total": "777.00", "status": "Pending", "tag": "at-risk", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 677 }] },
+        { "id": "ORD-1016", "customer": "Tech Solutions", "date": "2024-08-12", "total": "250.75", "status": "Delivered", "tag": "stuck", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 150.75 }] },
+        { "id": "ORD-1017", "customer": "John Doe", "date": "2024-08-11", "total": "350.00", "status": "Pending", "tag": "stuck", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 250 }] },
+        { "id": "ORD-1018", "customer": "Jane Smith", "date": "2024-08-10", "total": "460.50", "status": "Shipped", "tag": "stuck", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 360.50 }] },
+        { "id": "ORD-1019", "customer": "ACME Corp", "date": "2024-08-09", "total": "910.20", "status": "Pending", "tag": "stuck", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 810.20 }] },
+        { "id": "ORD-1020", "customer": "Tech Solutions", "date": "2024-08-08", "total": "180.00", "status": "Canceled", "tag": "stuck", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 80 }] },
+        { "id": "ORD-1021", "customer": "John Doe", "date": "2024-08-07", "total": "680.40", "status": "Shipped", "tag": "ready", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 580.40 }] },
+        { "id": "ORD-1022", "customer": "Jane Smith", "date": "2024-08-06", "total": "720.00", "status": "Shipped", "tag": "ready", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 620 }] },
+        { "id": "ORD-1023", "customer": "ACME Corp", "date": "2024-08-05", "total": "333.00", "status": "Shipped", "tag": "ready", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 233 }] },
+        { "id": "ORD-1024", "customer": "Tech Solutions", "date": "2024-08-04", "total": "444.44", "status": "Shipped", "tag": "ready", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 344.44 }] },
+        { "id": "ORD-1025", "customer": "John Doe", "date": "2024-08-03", "total": "555.00", "status": "Shipped", "tag": "ready", "items": [{ "name": "Item A", "quantity": 2, "price": 50 }, { "name": "Item B", "quantity": 1, "price": 455 }] }
+    ]
+}

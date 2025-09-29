@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  # php:
+  #   image: php:8.2-apache
+  #   container_name: php_imstest
+  #   ports:
+  #     - "8001:80"
+  #   volumes:
+  #     - ./:/var/www/html
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - app_network
+  #   restart: unless-stopped
+  #   command: bash -c "docker-php-ext-install mysqli && apache2-foreground"
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_py
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: ims
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_network
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8082:80"
+    depends_on:
+      - db
+    networks:
+      - app_network
+    restart: unless-stopped
+
+volumes:
+  db_data:
+
+networks:
+  app_network:
