@@ -1,20 +1,7 @@
+
 version: '3.9'
 
 services:
-  # php:
-  #   image: php:8.2-apache
-  #   container_name: php_imstest
-  #   ports:
-  #     - "8001:80"
-  #   volumes:
-  #     - ./:/var/www/html
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - app_network
-  #   restart: unless-stopped
-  #   command: bash -c "docker-php-ext-install mysqli && apache2-foreground"
-
   db:
     image: mysql:8.0
     container_name: mysql_py
@@ -30,6 +17,48 @@ services:
     networks:
       - app_network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      # start_period: 30s
+
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: django_web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db: 
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_NAME: ims
+      DB_USER: myuser
+      DB_PASSWORD: mypassword
+    networks:
+      - app_network
+
+  frontend:
+    build:
+      context: ../client2
+    container_name: vite_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../client2:/app
+    environment:
+      VITE_API_URL: http://web:8000/api/
+    depends_on:
+      - web
+    networks:
+      - app_network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -50,3 +79,4 @@ volumes:
 
 networks:
   app_network:
+

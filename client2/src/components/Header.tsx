@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { SearchIcon, BellIcon, ChevronDownIcon, UserIcon, LogOutIcon } from './Icons';
 
-const Header = ({ user, lowStockItems, onNavigate, onLogout }) => {
+const Header = ({ user, lowStockItems, onNavigate, onLogout, dashboardData }) => {
     const [showNotifications, setShowNotifications] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const profileRef = useRef(null);

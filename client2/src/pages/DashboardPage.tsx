@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getItems } from '../api';
+import { getItems, getBrands, getCategories, getOrders, getUsers, getIssues, getOnHandItems, getTransactions } from '../api';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
@@ -7,11 +7,31 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 const DashboardPage = ({ user, onLogout }) => {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const [lowStockItems, setLowStockItems] = useState([]);
+    const [dashboardData, setDashboardData] = useState({
+        items: [],
+        brands: [],
+        categories: [],
+        orders: [],
+        users: [],
+        issues: [],
+        onHandItems: [],
+        transactions: [],
+    });
 
     useEffect(() => {
-        const fetchLowStock = async () => {
+        const fetchDashboardData = async () => {
             try {
-                const items = await getItems();
+                const [items, brands, categories, orders, users, issues, onHandItems, transactions] = await Promise.all([
+                    getItems(),
+                    getBrands(),
+                    getCategories(),
+                    getOrders(),
+                    getUsers(),
+                    getIssues(),
+                    getOnHandItems(),
+                    getTransactions(),
+                ]);
+                setDashboardData({ items, brands, categories, orders, users, issues, onHandItems, transactions });
                 // Lọc các item có minStock và quantity hợp lệ
                 const lowStock = items.filter(item => {
                     const minStock = Number(item.minStock);
@@ -23,7 +43,7 @@ const DashboardPage = ({ user, onLogout }) => {
                 setLowStockItems([]);
             }
         };
-        fetchLowStock();
+        fetchDashboardData();
     }, []);
     const navigate = useNavigate();
     const location = useLocation();
@@ -45,6 +65,7 @@ const DashboardPage = ({ user, onLogout }) => {
                     onLogout={onLogout}
                     lowStockItems={lowStockItems}
                     onNavigate={handleNavigate}
+                    dashboardData={dashboardData}
                 />
                 <Outlet />
             </main>
