@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
@@ -25,7 +26,15 @@ function App() {
     const handleLogout = () => {
         setUser(null);
     };
-
+        
+    useEffect(() => {
+      window.addEventListener('error', (e) => {
+        console.error('Global error:', e);
+      });
+      window.addEventListener('unhandledrejection', (e) => {
+        console.error('Unhandled promise rejection:', e);
+      });
+    }, []);
     return (
         <BrowserRouter>
             <Routes>

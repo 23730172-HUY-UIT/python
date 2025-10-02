@@ -1,3 +1,71 @@
+// Dashboard Data
+import { getCookie } from './hooks/getCookie';
+export const fetchCSRFToken = async () => {
+    // Gửi GET để backend set cookie csrftoken cho trình duyệt
+    // Gửi GET tới endpoint cho phép GET để backend set cookie csrftoken
+    await fetch('/api/csrf/', {
+        method: 'GET',
+        credentials: 'include'
+    });
+    const csrfToken = getCookie('csrftoken');
+    console.log('CSRF token fetched:', csrfToken);
+    return csrfToken;
+};
+
+// Auth
+export const login = async (usernameOrEmail, password) => {
+    const csrfToken = await fetchCSRFToken();
+    const payload = { username: usernameOrEmail, password };
+    const headers = { 'Content-Type': 'application/json' };
+    if (csrfToken) headers['X-CSRFToken'] = csrfToken;
+    const response = await fetch('/api/login/', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload),
+        credentials: 'include',
+    });
+    const data = await response.json();
+    console.log('API login response data:', data);
+    if (response.ok && data.success && data.user) {
+        return data.user;
+    } else {
+        throw new Error(data.message || 'Invalid credentials');
+    }
+};
+
+export const getDashboardData = async () => {
+    // Lấy dữ liệu tổng hợp từ các API con
+    const [onhands, orders, users, brands, categories, issues] = await Promise.all([
+        getOnHandItems(),
+        getOrders(),
+        getUsers(),
+        getBrands(),
+        getCategories(),
+        getIssues(),
+    ]);
+    return {
+        onhands,
+        orders,
+        users,
+        brands,
+        categories,
+        issues,
+    };
+};
+
+// All Items (giả lập, dùng getItems nếu muốn lấy thật)
+export const getAllItems = async () => {
+    // Có thể gọi lại getItems hoặc trả về dữ liệu giả lập
+    return await getItems();
+};
+
+// Tasks (giả lập)
+export const getTasks = async () => {
+    return [
+        { id: 1, title: 'Check inventory', completed: false },
+        { id: 2, title: 'Update price list', completed: true },
+    ];
+};
 // Upload image, trả về url
 export const uploadImage = async (file) => {
     const apiUrl = '/api/';
@@ -225,21 +293,6 @@ export const getOnHandItems = async () => {
     return data.onHandItems || [];
 };
 
-// Auth
-export const login = async (usernameOrEmail, password) => {
-    const payload = { username: usernameOrEmail, password };
-    const response = await fetch('/api/login/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-    });
-    const data = await response.json();
-    if (response.ok && data.success && data.user) {
-        return data.user;
-    } else {
-        throw new Error(data.message || 'Invalid credentials');
-    }
-};
 export const logout = async () => {
     const response = await fetch('/api/logout/', {
         method: 'POST',

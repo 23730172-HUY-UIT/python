@@ -1,16 +1,21 @@
+from django.views.decorators.csrf import csrf_exempt, csrf_protect, ensure_csrf_cookie
+from django.utils.decorators import method_decorator
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User as DjangoUser  # dùng hệ thống xác thực chuẩn
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from rest_framework import viewsets
-from .models import Product, Order, Category, Issue, Transaction, Brand
-from .serializers import ProductSerializer, OrderSerializer, CategorySerializer, IssueSerializer, TransactionSerializer, BrandSerializer
+from django.http import JsonResponse
+from .models import Product, Order, Category, Issue, Transaction, Brand, User, OnHandItem
+from .serializers import ProductSerializer, OrderSerializer, CategorySerializer, IssueSerializer, TransactionSerializer, BrandSerializer, UserSerializer, OnHandItemSerializer
 
-@method_decorator(csrf_exempt, name='dispatch')
+@ensure_csrf_cookie
+def get_csrf(request):
+    return JsonResponse({'detail': 'CSRF cookie set'})
+
+@method_decorator(csrf_protect, name='dispatch')
 class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username', '')
@@ -110,3 +115,12 @@ class TransactionViewSet(viewsets.ModelViewSet):
 class BrandViewSet(viewsets.ModelViewSet):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class OnHandItemViewSet(viewsets.ModelViewSet):
+    queryset = OnHandItem.objects.all()
+    serializer_class = OnHandItemSerializer

@@ -5,6 +5,7 @@ import {
   EyeOffIcon,
   SpinnerIcon,
 } from "../components/Icons";
+import { getCookie } from "../hooks/getCookie";
 
 
 const LoginPage = ({ onNavigate, onLogin }) => {
@@ -19,7 +20,7 @@ const LoginPage = ({ onNavigate, onLogin }) => {
     setIsLoading(true);
     setErrorMsg("");
     try {
-      await onLogin(email, password);
+      await onLogin(email, password, getCookie("csrftoken"));
     } catch (error) {
       // Log error chi tiết để debug
       console.error('Login error:', error);

@@ -12,7 +12,6 @@ const AuthPage = ({ onLoginSuccess }) => {
     const handleNavigation = (page) => {
         setCurrentPage(page);
     };
-
     const handleLogin = async (email, password) => {
         const user = await login(email, password);
         // Map user về chuẩn {id, username, email, role}

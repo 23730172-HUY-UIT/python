@@ -12,18 +12,19 @@ WORKDIR /app
 
 # CMD ["npm", "run", "dev", "--", "--port", "5173", "--open", "--host"]
 
+
+# Copy package files
+# COPY package.json pnpm-lock.yaml ./
+
 # Cài pnpm
 RUN npm install -g pnpm
 
-# Copy package files
-COPY package.json pnpm-lock.yaml ./
-
 # Cài dependencies bằng pnpm
-RUN pnpm install
+# RUN pnpm install
 
 # Copy toàn bộ mã nguồn
 COPY . .
 
-EXPOSE 5173
+EXPOSE 5175
 
-CMD ["pnpm", "dev", "--", "--port", "5173", "--open", "--host"]
+CMD ["pnpm", "run", "dev", "--", "--port", "5175", "--host", "0.0.0.0"]
